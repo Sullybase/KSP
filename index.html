@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sullydux's Craft Hangar | KSP Craft Downloads</title>
+	<meta property="og:title" content="Sullydux's Craft Hangar | KSP Craft Downloads">
+	<meta name="description" content="Kerbal Space Program craft files, free to download.">
+	<meta property="og:description" content="Kerbal Space Program craft files, free to download.">
+	<meta name="author" content="Sullydux">
+	<meta name="robots" content="index,follow">
+	<meta property="og:type" content="website">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<style>
+		:root {
+			--bg: #070914;
+			--panel: #0c1022;
+			--panel-strong: #0b132b;
+			--text: #eaf0ff;
+			--muted: rgba(234, 240, 255, 0.72);
+			--accent: #fbbf24;
+			--accent-2: #60a5fa;
+			--border: rgba(234, 240, 255, 0.18);
+			--border-strong: rgba(36, 158, 251, 0.55);
+			--shadow: 10px 10px 0 rgba(0, 0, 0, 0.35);
+			--radius-lg: 10px;
+			--radius-md: 8px;
+			--title-icon-size: 72px;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			overflow: auto;
+			font-family: ui-rounded, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+				"Apple Color Emoji", "Segoe UI Emoji";
+			color: var(--text);
+			background:
+				radial-gradient(circle at 12px 18px, rgba(255, 255, 255, 0.24) 1px, transparent 2px),
+				radial-gradient(circle at 54px 44px, rgba(255, 255, 255, 0.20) 1px, transparent 2px),
+				radial-gradient(circle at 94px 22px, rgba(255, 255, 255, 0.18) 1px, transparent 2px),
+				radial-gradient(circle at 22px 92px, rgba(255, 255, 255, 0.16) 1px, transparent 2px),
+				radial-gradient(circle at 78px 78px, rgba(255, 255, 255, 0.14) 1px, transparent 2px),
+				radial-gradient(circle at 35px 110px, rgba(251, 191, 36, 0.14) 1px, transparent 3px),
+				radial-gradient(circle at 110px 30px, rgba(96, 165, 250, 0.12) 1px, transparent 3px),
+				linear-gradient(180deg, #03040a, var(--bg));
+			background-size: 120px 120px, 140px 140px, 160px 160px, 185px 185px, 210px 210px, 260px 260px, 320px 320px, auto;
+			display: flex;
+			flex-direction: column;
+		}
+
+		header,
+		footer {
+			width: min(1100px, calc(100% - 2rem));
+			margin: 0 auto;
+		}
+
+		header {
+			padding: 2.5rem 0 1.5rem;
+		}
+
+		.title-lockup {
+			display: flex;
+			align-items: center;
+			gap: 0.9rem;
+		}
+
+		.title-lockup .rocket-icon {
+			width: var(--title-icon-size);
+			height: var(--title-icon-size);
+			flex: 0 0 auto;
+			display: grid;
+			place-items: center;
+			font-size: 2.4rem;
+			filter: drop-shadow(0 8px 0 rgba(0, 0, 0, 0.35));
+		}
+
+		h1 {
+			margin: 0;
+			font-size: clamp(2.2rem, 5vw, 4rem);
+			letter-spacing: -0.01em;
+			font-family: "Segoe UI";
+			line-height: 1.05;
+		}
+
+		header p {
+			font-size: 1rem;
+			max-width: 65ch;
+			line-height: 1.55;
+			color: var(--muted);
+			margin: 0.75rem 0 0;
+		}
+
+		header p::before {
+			content: "> ";
+			color: rgba(36, 176, 251, 0.95);
+		}
+
+		.support-bar {
+			margin-top: 1.25rem;
+			display: flex;
+			align-items: center;
+			gap: 0.9rem;
+			flex-wrap: wrap;
+		}
+
+		.support-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			background: var(--accent);
+			color: #1a1300;
+			font-weight: 700;
+			text-decoration: none;
+			padding: 0.65rem 1.1rem;
+			border-radius: var(--radius-md);
+			border: 2px solid rgba(0, 0, 0, 0.25);
+			box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.35);
+			transition: transform 0.12s ease, box-shadow 0.12s ease;
+		}
+
+		.support-btn:hover {
+			transform: translate(-1px, -1px);
+			box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
+		}
+
+		.support-note {
+			font-size: 0.85rem;
+			color: var(--muted);
+		}
+
+		main {
+			width: min(1100px, calc(100% - 2rem));
+			margin: 0 auto;
+			padding: 0;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			min-height: 0;
+		}
+
+		.panel {
+			background: var(--panel);
+			border: 2px solid var(--border);
+			border-radius: var(--radius-lg);
+			box-shadow: var(--shadow);
+			padding: 1.25rem;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			min-height: 0;
+			overflow: hidden;
+		}
+
+		.craft-list {
+			display: grid;
+			gap: 1.75rem;
+			font-family: Roboto;
+			overflow-y: auto;
+			overflow-x: hidden;
+			-webkit-overflow-scrolling: touch;
+			overscroll-behavior: auto;
+			flex: 1;
+			min-height: 0;
+			padding-right: 8px;
+		}
+
+		.craft-card {
+			display: grid;
+			grid-template-columns: 220px 1fr;
+			gap: 1.1rem;
+			background: var(--panel-strong);
+			border: 2px solid rgba(234, 240, 255, 0.16);
+			border-radius: var(--radius-md);
+			padding: 0.9rem;
+			transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease, box-shadow 0.12s ease;
+			box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.28);
+		}
+
+		.craft-card:hover {
+			transform: translate(-1px, -1px);
+			border-color: var(--border-strong);
+			background: #0d1a37;
+			box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.28);
+		}
+
+		.craft-image {
+			width: 100%;
+			aspect-ratio: 4 / 3;
+			border-radius: 10px;
+			overflow: hidden;
+			background: rgba(255, 255, 255, 0.04);
+			border: 2px solid rgba(234, 240, 255, 0.14);
+			box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.25);
+		}
+
+		.craft-image img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+
+		.craft-top {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 0.75rem;
+			flex-wrap: wrap;
+		}
+
+		.craft-card h3 {
+			margin: 0;
+			font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+			line-height: 1.2;
+			letter-spacing: -0.01em;
+		}
+
+		.tags {
+			display: flex;
+			gap: 0.5rem;
+			flex-wrap: wrap;
+		}
+
+		.tag {
+			font-size: 0.75rem;
+			padding: 0.35rem 0.65rem;
+			border-radius: 4px;
+			font-weight: 500;
+			letter-spacing: 0.02em;
+			white-space: nowrap;
+			background: rgba(255, 255, 255, 0.12);
+			color: var(--text);
+		}
+
+		.tag.tag-accent {
+			background: rgba(251, 191, 36, 0.25);
+			color: rgba(253, 224, 71, 0.95);
+			border: 1px solid rgba(251, 191, 36, 0.5);
+		}
+
+		.tag.tag-blue {
+			background: rgba(96, 165, 250, 0.25);
+			color: rgba(191, 219, 254, 0.95);
+			border: 1px solid rgba(96, 165, 250, 0.5);
+		}
+
+		.desc {
+			margin-top: 0.5rem;
+			color: var(--text);
+			font-size: 0.98rem;
+			line-height: 1.6;
+		}
+
+		.mod-block {
+			margin-top: 0.75rem;
+			background: rgba(255, 255, 255, 0.04);
+			border: 1px solid rgba(234, 240, 255, 0.14);
+			border-radius: var(--radius-md);
+			padding: 0.6rem 0.75rem;
+		}
+
+		.mod-block-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 0.5rem;
+		}
+
+		.mod-block-header span {
+			font-size: 0.8rem;
+			font-weight: 700;
+			letter-spacing: 0.03em;
+			text-transform: uppercase;
+			color: var(--muted);
+		}
+
+		.copy-btn {
+			font-family: inherit;
+			font-size: 0.75rem;
+			font-weight: 600;
+			color: var(--text);
+			background: rgba(255, 255, 255, 0.1);
+			border: 1px solid rgba(234, 240, 255, 0.25);
+			border-radius: 6px;
+			padding: 0.3rem 0.6rem;
+			cursor: pointer;
+			transition: background 0.12s ease, border-color 0.12s ease;
+		}
+
+		.copy-btn:hover {
+			background: rgba(255, 255, 255, 0.18);
+			border-color: var(--border-strong);
+		}
+
+		.mod-list {
+			margin: 0.5rem 0 0;
+			padding: 0;
+			list-style: none;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.4rem;
+		}
+
+		.mod-list li {
+			font-size: 0.85rem;
+			color: var(--muted);
+			background: rgba(255, 255, 255, 0.05);
+			border: 1px solid rgba(234, 240, 255, 0.12);
+			border-radius: 5px;
+			padding: 0.25rem 0.55rem;
+		}
+
+		.craft-footer {
+			margin-top: 0.85rem;
+			display: flex;
+			align-items: center;
+			gap: 0.9rem;
+			flex-wrap: wrap;
+		}
+
+		.download-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.45rem;
+			color: #1a1300;
+			background: var(--accent);
+			font-weight: 700;
+			font-size: 0.9rem;
+			text-decoration: none;
+			padding: 0.55rem 0.9rem;
+			border-radius: var(--radius-md);
+			border: 2px solid rgba(0, 0, 0, 0.25);
+			box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+			transition: transform 0.12s ease, box-shadow 0.12s ease;
+		}
+
+		.download-btn:hover {
+			transform: translate(-1px, -1px);
+			box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
+		}
+
+		.craft-meta {
+			font-size: 0.85rem;
+			color: var(--muted);
+		}
+
+		footer {
+			padding: 0 0 2rem;
+			text-align: center;
+		}
+
+		footer p {
+			margin: 0;
+		}
+
+		footer a {
+			color: rgba(255, 255, 255, 0.92);
+			text-decoration: none;
+			border-bottom: 2px dotted rgba(251, 191, 36, 0.7);
+			padding-bottom: 0;
+		}
+
+		footer a:hover {
+			border-bottom-style: solid;
+			border-bottom-color: rgba(96, 165, 250, 0.9);
+		}
+
+		@media (max-width: 700px) {
+			header,
+			main,
+			footer {
+				width: min(1100px, calc(100% - 1rem));
+			}
+
+			header {
+				padding: 1.25rem 0 1rem;
+			}
+
+			.title-lockup .rocket-icon {
+				width: 56px;
+				height: 56px;
+				font-size: 1.8rem;
+			}
+
+			h1 {
+				font-size: clamp(2rem, 11vw, 2.8rem);
+			}
+
+			.panel {
+				padding: 0.7rem;
+				flex: none;
+				overflow: visible;
+			}
+
+			.craft-list {
+				gap: 1rem;
+				overflow: visible;
+				padding-right: 0;
+			}
+
+			.craft-card {
+				grid-template-columns: 1fr;
+				padding: 0.75rem;
+			}
+
+			.craft-image {
+				aspect-ratio: 16 / 9;
+			}
+
+			footer {
+				padding: 1.25rem 0;
+				line-height: 1.65;
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<header>
+		<div class="title-lockup">
+			<div class="rocket-icon">🚀</div>
+			<h1>Craft Hangar</h1>
+		</div>
+		<p>Kerbal Space Program craft, ready to fly. Rockets, planes, rovers, and stations, all free to download.</p>
+		<div class="support-bar">
+			<a class="support-btn" href="https://www.patreon.com/Sullydux/posts/kerbal-space-164085875" target="_blank" rel="noreferrer">Get all craft on Patreon</a>
+			<span class="support-note">Every craft below downloads from the same Patreon post.</span>
+		</div>
+	</header>
+
+	<main>
+		<section class="panel">
+			<div class="craft-list">
+
+				<!-- ============================================================
+				     HOW TO ADD A NEW CRAFT:
+				     1. Copy one entire <article class="craft-card"> ... </article> block below.
+				     2. Paste it just above (or below) the others, inside .craft-list.
+				     3. Swap the image src/alt, title, tags, description, and mod list items.
+				     4. If this craft has its own Patreon post, change the download-btn href;
+				        otherwise leave it pointing at the main craft post link above.
+				     No other code needs to change — the copy button works automatically.
+				     ============================================================ -->
+
+				<!-- CRAFT: example rocket -->
+				<article class="craft-card">
+					<div class="craft-image">
+						<img src="craft-rocket-1.png" alt="Skyhopper II on the launchpad">
+					</div>
+					<div class="craft-content">
+						<div class="craft-top">
+							<h3>Skyhopper II</h3>
+							<div class="tags">
+								<span class="tag tag-accent">Rocket</span>
+								<span class="tag">Kerbin Orbit</span>
+							</div>
+						</div>
+						<p class="desc">
+							A reliable 2-stage orbital rocket built for quick Kerbin orbit runs. Comfortably seats a crew of 2 with enough delta-v left over for a modest orbital rendezvous.
+						</p>
+						<div class="mod-block">
+							<div class="mod-block-header">
+								<span>Required Mods</span>
+								<button class="copy-btn" onclick="copyMods(this)">Copy list</button>
+							</div>
+							<ul class="mod-list">
+								<li>Stock parts only</li>
+							</ul>
+						</div>
+						<div class="craft-footer">
+							<a class="download-btn" href="https://www.patreon.com/Sullydux/posts/kerbal-space-164085875" target="_blank" rel="noreferrer">Download on Patreon</a>
+							<span class="craft-meta">No mods required</span>
+						</div>
+					</div>
+				</article>
+
+				<!-- CRAFT: example spaceplane -->
+				<article class="craft-card">
+					<div class="craft-image">
+						<img src="craft-spaceplane-1.png" alt="Atmo Glider cruising above the clouds">
+					</div>
+					<div class="craft-content">
+						<div class="craft-top">
+							<h3>Atmo Glider</h3>
+							<div class="tags">
+								<span class="tag tag-blue">Spaceplane</span>
+								<span class="tag">Atmospheric</span>
+							</div>
+						</div>
+						<p class="desc">
+							A lightweight jet-powered spaceplane for fast point-to-point travel around Kerbin. Handles well at low altitude and holds a stable glide on approach.
+						</p>
+						<div class="mod-block">
+							<div class="mod-block-header">
+								<span>Required Mods</span>
+								<button class="copy-btn" onclick="copyMods(this)">Copy list</button>
+							</div>
+							<ul class="mod-list">
+								<li>MechJeb 2</li>
+								<li>Kerbal Engineer Redux</li>
+							</ul>
+						</div>
+						<div class="craft-footer">
+							<a class="download-btn" href="https://www.patreon.com/Sullydux/posts/kerbal-space-164085875" target="_blank" rel="noreferrer">Download on Patreon</a>
+							<span class="craft-meta">2 mods required</span>
+						</div>
+					</div>
+				</article>
+
+				<!-- CRAFT: example station -->
+				<article class="craft-card">
+					<div class="craft-image">
+						<img src="craft-station-1.png" alt="Outpost One space station in orbit">
+					</div>
+					<div class="craft-content">
+						<div class="craft-top">
+							<h3>Outpost One</h3>
+							<div class="tags">
+								<span class="tag tag-accent">Station</span>
+								<span class="tag">Mun Orbit</span>
+							</div>
+						</div>
+						<p class="desc">
+							A modular space station designed for Mun orbit. Docking ports on all four sides make it easy to expand with extra habitat or fuel modules over time.
+						</p>
+						<div class="mod-block">
+							<div class="mod-block-header">
+								<span>Required Mods</span>
+								<button class="copy-btn" onclick="copyMods(this)">Copy list</button>
+							</div>
+							<ul class="mod-list">
+								<li>Near Future Construction</li>
+							</ul>
+						</div>
+						<div class="craft-footer">
+							<a class="download-btn" href="https://www.patreon.com/Sullydux/posts/kerbal-space-164085875" target="_blank" rel="noreferrer">Download on Patreon</a>
+							<span class="craft-meta">1 mod required</span>
+						</div>
+					</div>
+				</article>
+
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<p>
+			Find me on
+			<a href="https://github.com/sullybase/" target="_blank" rel="noreferrer">Github</a>
+			and
+			<a href="https://scratch.mit.edu/users/sullydux/" target="_blank" rel="noreferrer">Scratch</a>.
+			<a href="https://www.patreon.com/cw/Sullydux" target="_blank" rel="noreferrer">My Patreon</a>.
+			<a href="https://www.reddit.com/r/Sullybase/" target="_blank" rel="noreferrer">Offical Reddit</a>
+		</p>
+	</footer>
+
+	<script>
+		function copyMods(btn) {
+			var block = btn.closest('.mod-block');
+			var items = block.querySelectorAll('.mod-list li');
+			var text = Array.prototype.map.call(items, function (li) {
+				return li.textContent.trim();
+			}).join('\n');
+
+			navigator.clipboard.writeText(text).then(function () {
+				var original = btn.textContent;
+				btn.textContent = 'Copied!';
+				setTimeout(function () {
+					btn.textContent = original;
+				}, 1500);
+			});
+		}
+	</script>
+
+</body>
+</html>
