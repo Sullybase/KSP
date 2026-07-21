@@ -1,8 +1,13 @@
 # SullyEngineer – Parts Pack
 
 **Created by:** [Sullydux](https://github.com/sullydux) with AI assistence
+
+**Patreon:** https://www.patreon.com/Sullydux/posts/sullyengineer-164389988
+
 **Base Parts files by** KSP -- I just edited the files
+
 **Game Version:** Kerbal Space Program **1.12.5**  
+
 **Dependencies:** *None* (uses stock KSP only)
 
 ---
